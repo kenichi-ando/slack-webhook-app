@@ -1,6 +1,7 @@
-import request
+from urllib import request
 import os
 import json
+import time
 
 def post_message(message: str) -> None:
     print(f"[POST] {message}\n")
@@ -12,4 +13,6 @@ def post_message(message: str) -> None:
     }
     request.urlopen(request.Request(os.environ.get("WEBHOOK_URL"), json.dumps(data).encode(), headers))
 
-post_message("Hello, World!")
+for i in range(5):
+    post_message(f"Hello, World! {i + 1}")
+    time.sleep(3)
